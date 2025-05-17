@@ -5,7 +5,8 @@ script flow:
 3. Remove temporary files, configuration, and .desktop files that sometimes remain after uninstalling. (Ej: gnome waydroid icons remaining)
 4. Done
 
-# WARNING
+# Compatibility note:
+
 This script is designed to back up the data stored on: home/YOUR-USER/.local/share/waydroid/data/media/0/
 It only backs up data from:
 
