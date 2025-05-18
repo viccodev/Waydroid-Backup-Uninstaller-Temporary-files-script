@@ -37,4 +37,4 @@ However, the core commands should work on most distributions.
 This script does not remove sensitive user data.
 
 Download: 
-
+https://github.com/viccodev/Waydroid-Backup-Uninstaller-Temporary-files-script/releases/download/waydroidscript/waydroid-uninstall-script-english.sh
