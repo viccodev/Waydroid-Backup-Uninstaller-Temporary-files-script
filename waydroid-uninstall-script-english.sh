@@ -7,9 +7,8 @@
 # Remove temporary files, configuration, and .desktop files that sometimes remain after uninstalling. (Ej: gnome waydroid icons remaining)
 # Done re install waydroid if you want.
 
-
-set -e
 USER_HOME=$(eval echo ~"${SUDO_USER:-$USER}")
+
 # Check for root privileges 
 if [ "$EUID" -ne 0 ]; then
     echo "Error: This script requires root privileges for correct execution." >&2 
@@ -17,6 +16,8 @@ if [ "$EUID" -ne 0 ]; then
     echo "Example: sudo ./$(basename "$0")" >&2 
     exit 1 
 fi
+
+
 
 echo "WARNING: This script was originally made for Fedora 42"
 echo "----------------------------------------------------"
@@ -51,8 +52,7 @@ echo "to remove Waydroid files and uninstall the application."
 echo "This WILL ERASE the current state of your Waydroid installation."
 echo ""
 echo "----------------------------------------------------"
-echo "The backup files will be saved in a folder named waydroid-script-backup in your$USER_HOME directory ($USER_HOME)."
-echo -n "Are you SURE you want to continue with the backup (if selected) and the uninstallation process? (y/n): " # Changed s/n to y/n as is standard in English prompts
+echo "The backup files will be saved in a folder named waydroid-script-backup in your $USER_HOME directory ($USER_HOME)."
 
 # Backup waydroid files
 read -p "Do you want to backup your Waydroid files? (yes/no): " confirmation
@@ -63,8 +63,15 @@ if [[ "$confirmation" == "yes" || "$confirmation" == "y" ]]; then
     cd $USER_HOME/
     mkdir -p $USER_HOME/waydroid-script-backup
     cd $USER_HOME/.local/share/waydroid/data/media/0/
-    cp -r Downloads Documents Pictures Movies DCIM Music $USER_HOME/waydroid-script-backup/
+    cp -r $USER_HOME/.local/share/waydroid/data/media/0/Download $USER_HOME/waydroid-script-backup/
+    cp -r $USER_HOME/.local/share/waydroid/data/media/0/Pictures $USER_HOME/waydroid-script-backup/
+    cp -r $USER_HOME/.local/share/waydroid/data/media/0/Movies $USER_HOME/waydroid-script-backup/
+    cp -r $USER_HOME/.local/share/waydroid/data/media/0/DCIM $USER_HOME/waydroid-script-backup/
+    cp -r $USER_HOME/.local/share/waydroid/data/media/0/Documents $USER_HOME/waydroid-script-backup/
+    cp -r $USER_HOME/.local/share/waydroid/data/media/0/Music $USER_HOME/waydroid-script-backup/
+
     echo "copy saved on $USER_HOME/waydroid-script-backup"
+    chown -R "$SUDO_USER:$SUDO_USER" "$USER_HOME/waydroid-script-backup/"
     cd $USER_HOME/
 elif [[ "$confirmation" == "no" || "$confirmation" == "n" ]]; then
     echo "Waydroid backup cancelled by user. uninstalling waydroid and temp files"
@@ -94,6 +101,5 @@ rm -rf /var/lib/waydroid
 rm -rf $USER_HOME/.waydroid
 rm -rf $USER_HOME/.local/share/waydroid
 rm -rf $USER_HOME/.cache/waydroid-script
-rm -rf $USER_HOME/.local/share/applications/waydroid*
-
+rm -rf $USER_HOME/.local/share/applications/*aydroid*
 
