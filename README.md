@@ -32,7 +32,7 @@ In my experience, Waydroid is good, but it can be buggy. Sometimes, reinstalling
 This script removes ALL Waydroid data and configuration... 
 Consider this carefully.
 
-# This script was originally made for Fedora 42
+# This script was originally made for Fedora 42 Workstation Gnome.
 
 It may work on other distributions, but use it with caution.
 I'm not a developer, just a new student.
